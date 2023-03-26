@@ -1,0 +1,17 @@
+<h2 class="text-lg font-semibold mb-2">Employees list</h2>
+<table class="w-full bg-gray-900 text-white rounded-md">
+  <thead class="text-left">
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody class="bg-gray-100 text-gray-900">
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.firstName }}</td>
+      <td>{{ employee.lastName }}</td>
+      <td>{{ employee.email }}</td>
+    </tr>
+  </tbody>
+</table>
