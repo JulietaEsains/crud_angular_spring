@@ -1,6 +1,10 @@
 <div>
   <h3 class="text-lg font-semibold mb-2 text-center">Employee registration</h3>
-  <form (ngSubmit)="onFormSubmit()" class="m-auto w-6/12">
+  <form
+    (ngSubmit)="onFormSubmit()"
+    #employeeForm="ngForm"
+    class="m-auto w-6/12"
+  >
     <div class="flex flex-col gap-2 my-3">
       <label>First name:</label>
       <input
@@ -9,7 +13,25 @@
         name="firstName"
         [(ngModel)]="employee.firstName"
         class="border border-gray-500 rounded-md pl-1"
+        required
+        minlength="4"
+        maxlength="10"
+        #firstName="ngModel"
       />
+      <div
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="firstName.errors['required']">
+          You must provide a first name.
+        </div>
+        <div *ngIf="firstName.errors['minlength']">
+          The first name must contain at least 4 characters.
+        </div>
+        <div *ngIf="firstName.errors['maxlength']">
+          The first name must contain at most 10 characters.
+        </div>
+      </div>
     </div>
     <div class="flex flex-col gap-2 my-3">
       <label>Last name:</label>
@@ -19,7 +41,25 @@
         name="lastName"
         [(ngModel)]="employee.lastName"
         class="border border-gray-500 rounded-md pl-1"
+        required
+        minlength="4"
+        maxlength="10"
+        #lastName="ngModel"
       />
+      <div
+        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="lastName.errors['required']">
+          You must provide a last name.
+        </div>
+        <div *ngIf="lastName.errors['minlength']">
+          The last name must contain at least 4 characters.
+        </div>
+        <div *ngIf="lastName.errors['maxlength']">
+          The last name must contain at most 10 characters.
+        </div>
+      </div>
     </div>
     <div class="flex flex-col gap-2 my-3">
       <label>Email:</label>
@@ -27,12 +67,27 @@
         type="email"
         id="email"
         name="email"
+        pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
         [(ngModel)]="employee.email"
         class="border border-gray-500 rounded-md pl-1"
+        required
+        #email="ngModel"
       />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="email.errors['required']">
+          You must provide an email address.
+        </div>
+        <div *ngIf="email.errors['pattern']">
+          You must provide a valid email address. For example: user100@gmail.com
+        </div>
+      </div>
     </div>
     <button
       class="mt-3 p-2 bg-green-500 text-white w-full hover:bg-green-600 rounded-md"
+      [disabled]="!employeeForm.form.valid"
     >
       Save
     </button>
