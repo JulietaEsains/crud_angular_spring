@@ -5,6 +5,7 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody class="bg-gray-100 text-gray-900">
@@ -12,6 +13,26 @@
       <td>{{ employee.firstName }}</td>
       <td>{{ employee.lastName }}</td>
       <td>{{ employee.email }}</td>
+      <td>
+        <button
+          (click)="updateEmployee(employee.id)"
+          class="mr-2 my-2 px-2 bg-cyan-500 text-white hover:bg-cyan-600 rounded-md"
+        >
+          Edit
+        </button>
+        <button
+          (click)="deleteEmployee(employee.id)"
+          class="mr-2 my-2 px-2 bg-red-500 text-white hover:bg-red-600 rounded-md"
+        >
+          Delete
+        </button>
+        <button
+          (click)="seeEmployeeDetails(employee.id)"
+          class="mr-2 my-2 px-2 bg-blue-500 text-white hover:bg-blue-600 rounded-md"
+        >
+          View details
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
