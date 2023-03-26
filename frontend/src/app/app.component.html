@@ -1,2 +1,11 @@
+<nav class="bg-gray-900 text-white h-10">
+  <ul class="p-2">
+    <li class="hover:font-semibold">
+      <a routerLink="employees" routerLinkActive="active">Employees list</a>
+    </li>
+  </ul>
+</nav>
 <h1 class="text-center text-5xl font-bold my-5">{{ title }}</h1>
-<div class="mx-20"><app-employees-list></app-employees-list></div>
+<div class="mx-20">
+  <router-outlet></router-outlet>
+</div>
