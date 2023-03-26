@@ -14,4 +14,8 @@ export class EmployeeService {
   getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.baseURL);
   }
+
+  registerEmployee(employee: Employee): Observable<Employee> {
+    return this.httpClient.post<Employee>(this.baseURL, employee);
+  }
 }
